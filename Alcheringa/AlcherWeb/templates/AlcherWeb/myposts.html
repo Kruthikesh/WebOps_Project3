@@ -1,0 +1,36 @@
+{% extends "AlcherWeb/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/CSS/myposts.css' %}">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>My posts</h4>
+    </div>
+    <div class="col">
+      <span class="aer"><a class="anc" href=""> <img src="{% static 'images/leftarrow.png' %}" height="10px"
+            width="10px" alt=""> Go back</a></span>
+    </div>
+  </div>
+
+
+  <div class="row">
+    {% for post in posts1 %}
+
+
+    <div class="col-6 col-md-4">
+
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/cn_bg.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text"> <a href=""><img src="{% static 'images/thumbs_up.jpg' %}" height="25px" width="25px"
+                alt=""></a>
+            {{post.likes}} likes</p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+
+  {% endblock content %}

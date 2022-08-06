@@ -22,14 +22,46 @@
 </head>
 
 <body>
-  <div class="content">
+  {% if user.is_authenticated %}
+  {% else %}
+    <div class="content">
+    {% endif %}
+
     <br>
+    <nav>
+      {% if user.is_authenticated %}
 
-    <h3> <img src="https://media.giphy.com/avatars/alcheringa/R4opi9IQOgHt.png" height="50px" width="50px" alt="">
-      Alcheringa <span class="orcol">Connect</span> </h3>
+      <nav class="">
+        <div class="d-flex justify-content-between">
+        <a class="navbar-brand" href="#">
+          <img src="https://media.giphy.com/avatars/alcheringa/R4opi9IQOgHt.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Alcheringa <span class="orcol">Connect</span> </h3>
+        </a>
+
+        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+      </div>
+      </nav>
+
+      
+
+      {% else %}
+      <h3> <img src="https://media.giphy.com/avatars/alcheringa/R4opi9IQOgHt.png" height="50px" width="50px" alt="">
+        Alcheringa <span class="orcol">Connect</span> </h3>
+    </nav>
+    {% endif %}
+
+
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+      {{message}}
+    </div> {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
-  </div>
 
+  </div>
 </body>
 
 </html>

@@ -8,3 +8,8 @@
     font-family: 'Josefin Sans', sans-serif;
     padding-left: 10%;
 }
+.nav_specs
+{
+    background-image: linear-gradient(to right, #fc8803,#fc6603);
+
+}

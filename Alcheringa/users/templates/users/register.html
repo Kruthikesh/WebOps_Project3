@@ -1,0 +1,28 @@
+{% extends "AlcherWeb/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/CSS/login.css' %}">
+<h4>Alcheringa connect lets you associate with the people in your life</h4>
+<div class="card h-auto" style="width:20rem;">
+<form method="post">
+        {% csrf_token %}
+      <div class="card-title">
+      <br> <br>
+      <legend class="border-bottom mb-4" >Register</legend>
+        <br>
+        <h6>Already have an account? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'login' %}" class="whiteli">Sign In </a></h3>
+          <br>
+      </div>
+      <div class="card-body">
+      {{form|crispy }}
+
+      <br>
+      <button class="btn btn-outline-info login" type="submit">Login</button>
+
+      <!-- <button type="submit" class="login" value="Login"> -->
+    
+      </div>
+</form>
+
+{% endblock content %}

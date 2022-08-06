@@ -2,8 +2,8 @@
     margin-left: 70%;
     align-self: auto;
     border-radius:10px;
-    height:30rem;
-    
+    /* height: max-content;
+    height: fit-content; */
 
 }
 .login

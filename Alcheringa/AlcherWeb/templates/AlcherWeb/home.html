@@ -1,0 +1,51 @@
+{% extends "AlcherWeb/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/CSS/myposts.css' %}">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>Posts</h4>
+    </div>
+    <div class="col">
+      
+      <!-- <span class="aer"><a class="anc" href=""> <img src="{% static 'images/leftarrow.png' %}" height="10px"
+            width="10px" alt=""> Go back</a></span> -->
+           <div class="d-flex flex-row-reverse" style="gap: 15px;">
+        <a class="btn btn-outline-primary" style="color:#fc8c03; border-color:#fc8c03;" href="{% url 'favourite_list' %}">Saved Posts</a>
+        <a class="btn btn-outline-primary" style="color:#fc8c03; border-color:#fc8c03;" href="{% url 'profile' %}">My Profile</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    {% for post in posts%}
+    <div class="col-6 col-md-4">
+        <div class="card" style="width:18rem; border: solid 1px; border-color: #fc8c03;">
+            <div class="card-title">
+              <div style="display:inline-flex; gap: 12px;">
+              <img class="round-bord" style="border-radius: 50%;" src="{{post.author.Profile.image.url}}"  width="25px" height="25px"
+            alt="">
+                <h6 class="card-title"> {{post.author}}</h6>
+              </div>
+              </div>
+          <div class="card-body">
+            <img src="{{post.posted_pic.url}}" class="card-img-top" alt="">
+
+            <p class="card-text">{{post.content}}</p>
+              <div>
+            <a href="{% url 'favourite_add' post.id %}" class="btn btn-outline-primary">Add To Saved Posts</a>
+          </div>
+            
+            
+          </div>
+        </div>
+      </div>
+
+    
+
+    {% endfor %}
+  </div>
+
+  {% endblock content %}

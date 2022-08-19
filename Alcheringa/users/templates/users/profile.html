@@ -1,4 +1,5 @@
 {% extends "AlcherWeb/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
@@ -9,17 +10,14 @@
 
         <div class="card" style="width: 18rem;">
             <div class="card-title">
-                <h6 class="card-title"> <img src="{{ user.profile.image.url }}" class="round-bord" width="25px"
+                <h6 class="card-title"> <img src="{{ user.Profile.image.url }}" class="round-bord" style="border-radius: 50%;" width="25px"
                         height="25px" alt=""> {{user.username}}</h6>
 
             </div>
             <div class="card-body">
                 <img src="{% static 'images/cn_bg.jpg' %}" class="main-pic" width="289px" height="150px" alt="">
                 <br><br>
-                <a href=""><img src="{% static 'images/thumbs_up.jpg' %}" height="25px" width="25px" alt=""></a>
                 
-                <a href="" class="bm"><img src="{% static 'images/bookmark.jpg' %}" height="25px" width="25px"
-                        alt=""></a>
             </div>
         </div>
         <br><br>
@@ -28,17 +26,18 @@
 
     <div class="col">
         <div class="card" style="width: 18rem;">
-            <div class="card-title1">
-                <h5>My Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="" class="rightarr"><img
-                            src="{% static 'images/rightarrow.jpg' %}" height="25px" width="25px" alt=""></a>
+            <div class="card-title1 d-flex justify-content-evenly">
+                <h5 >My Profile 
                 </h5>
 
             </div>
             <div class="card-body1">
                 <div class="d-flex flex-row">
-                    <div class="p-1 bd-highlight"> <img src="{% static 'images/cn_bg.jpg' %}" class="round-bord"
-                            width="45px" height="45px" alt="">
+                    <div class="p-1 bd-highlight"> <img src="{{user.Profile.image.url}}" class="round-bord"
+                        width="35px" height="35px" alt="">
                     </div>
+                    <h6><div class="bd-highlight">{{user.username}}</div></h6>
+
                     <div class=" bd-highlight">
                         <div class="d-flex flex-column " id="pdd">
                             <div class="bd-highlight"></div>
@@ -55,7 +54,7 @@
                         <div class="d-flex flex-row ">
                             <div class=" bd-highlight"><img src="{% static 'images/plus_cent.png' %}" height="25px"
                                     width="25px" alt=""></div>
-                            <div class=" bd-highlight">&nbsp;&nbsp;<a class="reu" href="">My posts</a></div>
+                            <div class=" bd-highlight">&nbsp;&nbsp;<a class="reu" href="{% url 'mypost' %}">My posts</a></div>
                         </div>
 
 
@@ -64,7 +63,7 @@
                         <div class="d-flex flex-row">
                             <div class=" bd-highlight"><img src="{% static 'images/bookmark.jpg' %}" height="25px"
                                     width="25px" alt=""></div>
-                            <div class=" bd-highlight">&nbsp;&nbsp;<a class="reu" href="">Saved Posts</a> </div>
+                            <div class=" bd-highlight">&nbsp;&nbsp;<a class="reu" href="{% url 'favourite_list' %}">Saved Posts</a> </div>
                         </div>
                     </div>
                 </div>
@@ -73,11 +72,11 @@
 
         </div>
         <br><br>
-        <div class="card" style="padding:10px;">
+        <div class="card" style =" padding:10px">
             <div class="card-body2">
                 <div class="d-flex flex-row ">
-                    <div><a class="reu" href=""><img src="{% static 'images/plus_cent.png' %}" height="25px"
-                                width="25px" alt="">&nbsp;&nbsp;</a>Create new post</div>
+                    <div><a class="reu" href="{% url 'post-create' %}"><img src="{% static 'images/plus_cent.png' %}" height="25px"
+                                width="25px" alt="">&nbsp;&nbsp;Create new post</a></div>
 
                 </div>
             </div>
@@ -86,5 +85,23 @@
 
     </div>
 </div>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card">
+  <div class="card-title">
+  <br> <br>
+  <legend class="border-bottom mb-4" >Profile Info</legend>
+    <br>
+      <br>
+  </div>
+  <div class="card-body">
+  {{u_form|crispy}}
+  {{p_form|crispy}}
 
+
+  <br>
+  <button class="btn btn-outline-info login" type="submit">Update</button>
+</div>
+</div>
+</form>
 {% endblock content %}

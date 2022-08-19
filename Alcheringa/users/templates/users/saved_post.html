@@ -1,0 +1,40 @@
+{% extends "AlcherWeb/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/CSS/myposts.css' %}">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>Saved Posts</h4>
+    </div>
+    <div class="col">
+      <span class="aer"><a class="anc" href="{% url 'profile' %}"> <img src="{% static 'images/leftarrow.png' %}" height="10px"
+            width="10px" alt="">To My Profile</a></span>
+    </div>
+  </div>
+
+
+  <div class="row">
+    {% for post in new %}
+    <div class="col-6 col-md-4">
+      <div class="card" style="width: 18rem; border: solid 1px; border-color: #fc8c03;">
+          <div class="card-title">
+            <div style="display:inline-flex; gap: 12px;">
+
+            <img style="border-radius: 50%;" src="{{ post.author.Profile.image.url }}" class="round-bord" width="25px"
+                        height="25px" alt="">
+              <h6 class="card-title"> {{post.author}}</h6>
+              
+            </div>
+          </div>
+        <div class="card-body">
+          <img src="{{post.posted_pic.url}}" class="card-img-top" alt="">
+
+          <p class="card-text">{{post.content}}</p>
+        </div>
+      
+    </div>
+    
+  </div>
+  {% endfor %}
+  {% endblock content %}

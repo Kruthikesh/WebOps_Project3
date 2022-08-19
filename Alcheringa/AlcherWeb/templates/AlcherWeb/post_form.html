@@ -1,0 +1,89 @@
+{% extends "AlcherWeb/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/CSS/newpost.css' %}">
+
+<div class="row">
+  <div class="col">
+
+    <h5>Create a new post</h5>
+    <br><br>
+    <div class="card" style="height: 35rem;">
+      <div class="card-body1">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            {{form|crispy}}
+          </fieldset>
+          <p class="location"></p>
+
+      </div>
+
+      <button class="login btn btn-outline-info" type="submit">Share</button>
+      </form>
+    </div>
+    </span>
+
+  </div>
+
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-title1 d-flex justify-content-evenly" style="gap:20%;">
+        <a href="{% url 'profile' %}" style="text-decoration:none;">
+          <h5 style="color: white;">To My Profile</h5>
+        </a>
+        
+        
+        
+
+
+      </div>
+      <div class="card-body1">
+        <div class="d-flex flex-row">
+          <div class="p-1 bd-highlight"> <img src="{{ user.Profile.image.url }}" style="border-radius: 50%;"
+              width="35px" height="35px" alt="">
+          </div>
+          <div class=" bd-highlight">
+            <div class="d-flex flex-column " id="pdd">
+              <div class="bd-highlight">{{user.username}}</div>
+              <div class="bd-highlight">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- <p style="padding-top:20px;" style="text-align:centre;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Voluptas reprehenderit ut illum error facilis, amet, assumenda eveniet dolorem aperiam eos mollitia vitae
+          dolore, ratione sint officiis incidunt doloribus. Accusamus, ipsam!</p> -->
+
+        <div class="d-flex flex-column ">
+          <div class=" bd-highlight">
+            <div class="d-flex flex-row ">
+              <div class=" bd-highlight"><img src="{% static 'images/plus_cent.png' %}" height="25px" width="25px"
+                  alt=""></div>
+              <div class=" bd-highlight">&nbsp;&nbsp; <a class="reu" href="{% url 'mypost' %}">My posts</a> </div>
+            </div>
+
+
+          </div>
+          <div class="bd-highlight">
+            <div class="d-flex flex-row">
+              <div class=" bd-highlight"><img src="{% static 'images/bookmark.jpg' %}" height="25px" width="25px"
+                  alt=""></div>
+              <div class=" bd-highlight">&nbsp;&nbsp;<a class="reu" href="{% url 'favourite_list' %}">Saved Posts</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <br><br>
+
+  </div>
+</div>
+
+<script src="{% static 'JS/newpost.js' %}"></script>
+{% endblock content %}

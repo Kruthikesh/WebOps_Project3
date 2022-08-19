@@ -17,18 +17,24 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path,include
 from users import views as user_views
+from AlcherWeb.views import PostListView,PostCreateView
 from AlcherWeb import views as Web_views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/',PostListView.as_view(),name='AlcherWeb-home'),
+    path('createview/',PostCreateView.as_view(),name='post-create'),
+    path('fav/<int:id>/',user_views.favourite_add,name="favourite_add"),
+    path('saved_posts/',user_views.favourite_list, name='favourite_list'),
     path('',user_views.register,name='AlcherWeb-urls-login'),
     path('profile/',user_views.profile,name='profile'),
     path('newpost/',user_views.newpost,name='newpost'),
     path('mypost/', Web_views.myposts, name='mypost'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
+
     
 ]
 

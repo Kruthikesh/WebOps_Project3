@@ -59,12 +59,19 @@
 
 
                     </div>
-                    <div class="bd-highlight">
+                    <div class="bd-highlight" style="line-height:40px">
                         <div class="d-flex flex-row">
                             <div class=" bd-highlight"><img src="{% static 'images/bookmark.jpg' %}" height="25px"
                                     width="25px" alt=""></div>
                             <div class=" bd-highlight">&nbsp;&nbsp;<a class="reu" href="{% url 'favourite_list' %}">Saved Posts</a> </div>
+                            
                         </div>
+                        <div class="flex flex-row ">
+                            <div><a class="reu" href="{% url 'post-create' %}"><img src="{% static 'images/plus_cent.png' %}" height="25px"
+                                        width="25px" alt="">&nbsp;&nbsp;Create new post</a></div>
+        
+                        
+                    </div>
                     </div>
                 </div>
 
@@ -72,27 +79,22 @@
 
         </div>
         <br><br>
-        <div class="card" style =" padding:10px">
-            <div class="card-body2">
-                <div class="d-flex flex-row ">
-                    <div><a class="reu" href="{% url 'post-create' %}"><img src="{% static 'images/plus_cent.png' %}" height="25px"
-                                width="25px" alt="">&nbsp;&nbsp;Create new post</a></div>
-
-                </div>
-            </div>
+        <div class="card" style =" padding:5px;width:max-content;">
+                
+                
         </div>
 
 
     </div>
 </div>
-<form method="POST" enctype="multipart/form-data">
+<div class="content" >
+<form method="POST" enctype="multipart/form-data" style="top: 50%;left: 20%;position: absolute;">
     {% csrf_token %}
-    <div class="card">
+    <div class="card" style="width:fit-content ;" >
   <div class="card-title">
-  <br> <br>
-  <legend class="border-bottom mb-4" >Profile Info</legend>
-    <br>
-      <br>
+  <br>
+  <legend class="border-bottom mb-0" >Profile Info</legend>
+    
   </div>
   <div class="card-body">
   {{u_form|crispy}}
@@ -104,4 +106,5 @@
 </div>
 </div>
 </form>
+</div>
 {% endblock content %}
